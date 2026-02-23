@@ -5,8 +5,15 @@ Tests for smoking tracker backend endpoints
 import pytest
 import requests
 import os
+from pathlib import Path
+from dotenv import load_dotenv
 
-BASE_URL = os.environ.get('EXPO_PUBLIC_BACKEND_URL').rstrip('/')
+# Load frontend .env to get PUBLIC_URL
+frontend_env = Path(__file__).parent.parent.parent / 'frontend' / '.env'
+if frontend_env.exists():
+    load_dotenv(frontend_env)
+
+BASE_URL = os.environ.get('EXPO_PUBLIC_BACKEND_URL', 'https://ember-pulse.preview.emergentagent.com').rstrip('/')
 
 class TestHealth:
     """Basic health checks"""
