@@ -177,13 +177,13 @@ async def analytics_summary():
     settings = await get_or_create_settings()
     price = settings.get("cigarette_price", 0.50)
 
-    total_30 = sum(l["count"] for l in logs)
-    week_logs = [l for l in logs if l["date"] >= d7]
-    total_7 = sum(l["count"] for l in week_logs)
+    total_30 = sum(entry["count"] for entry in logs)
+    week_logs = [entry for entry in logs if entry["date"] >= d7]
+    total_7 = sum(entry["count"] for entry in week_logs)
 
-    today_log = next((l for l in logs if l["date"] == t), None)
+    today_log = next((entry for entry in logs if entry["date"] == t), None)
     today_count = today_log["count"] if today_log else 0
-    yesterday_log = next((l for l in logs if l["date"] == y), None)
+    yesterday_log = next((entry for entry in logs if entry["date"] == y), None)
     yesterday_count = yesterday_log["count"] if yesterday_log else 0
 
     avg = round(total_30 / max(len(logs), 1), 1)

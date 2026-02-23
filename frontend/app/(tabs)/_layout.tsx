@@ -1,6 +1,16 @@
 import { Tabs } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+function TrackIcon({ color, size }: { color: string; size: number }) {
+  return <MaterialCommunityIcons name="fire" size={size} color={color} />;
+}
+function AnalyticsIcon({ color, size }: { color: string; size: number }) {
+  return <MaterialCommunityIcons name="chart-bar" size={size} color={color} />;
+}
+function SettingsIcon({ color, size }: { color: string; size: number }) {
+  return <MaterialCommunityIcons name="cog-outline" size={size} color={color} />;
+}
 
 export default function TabLayout() {
   return (
@@ -16,30 +26,15 @@ export default function TabLayout() {
     >
       <Tabs.Screen
         name="index"
-        options={{
-          title: 'Track',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="fire" size={size} color={color} />
-          ),
-        }}
+        options={{ title: 'Track', tabBarIcon: TrackIcon }}
       />
       <Tabs.Screen
         name="analytics"
-        options={{
-          title: 'Analytics',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="chart-bar" size={size} color={color} />
-          ),
-        }}
+        options={{ title: 'Analytics', tabBarIcon: AnalyticsIcon }}
       />
       <Tabs.Screen
         name="settings"
-        options={{
-          title: 'Settings',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="cog-outline" size={size} color={color} />
-          ),
-        }}
+        options={{ title: 'Settings', tabBarIcon: SettingsIcon }}
       />
     </Tabs>
   );
