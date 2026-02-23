@@ -9,7 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from 'expo-router';
 import EmberCore from '../../src/components/EmberCore';
 import SmokeParticles from '../../src/components/SmokeParticles';
 import TactileButton from '../../src/components/TactileButton';
