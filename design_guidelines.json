@@ -1,0 +1,116 @@
+{
+  "identity": {
+    "name": "EMBER",
+    "mission": "A real-time smoking awareness tracker that uses visceral, physics-driven feedback to build mindfulness without judgment.",
+    "tone": "Observational, Tactile, High-End, Slightly Uncomfortable (at high usage), Calm (at low usage).",
+    "aesthetic": "OLED Dark Mode, Bioluminescent Glow, Particle Physics, Apple Design Award Polish."
+  },
+  "typography": {
+    "font_family_primary": "System",
+    "font_family_secondary": "SpaceMono",
+    "scale": {
+      "display": { "size": 48, "weight": "800", "tracking": -1, "lineHeight": 56 },
+      "h1": { "size": 32, "weight": "700", "tracking": -0.5, "lineHeight": 40 },
+      "h2": { "size": 24, "weight": "600", "tracking": -0.25, "lineHeight": 32 },
+      "body": { "size": 16, "weight": "400", "tracking": 0, "lineHeight": 24 },
+      "caption": { "size": 12, "weight": "500", "tracking": 0.5, "lineHeight": 16, "uppercase": true }
+    }
+  },
+  "colors": {
+    "background": {
+      "base": "#050505",
+      "surface": "#121212",
+      "surface_highlight": "#1E1E1E",
+      "overlay": "rgba(255, 255, 255, 0.05)"
+    },
+    "text": {
+      "primary": "#E0E0E0",
+      "secondary": "#A0A0A0",
+      "tertiary": "#505050",
+      "inverse": "#050505"
+    },
+    "ember_states": {
+      "calm": { "core": "#2E8B57", "glow": "#3CB371", "intensity": 0.4 },
+      "warm": { "core": "#FFD700", "glow": "#FFA500", "intensity": 0.6 },
+      "hot": { "core": "#FF4500", "glow": "#FF6347", "intensity": 0.8 },
+      "critical": { "core": "#8B0000", "glow": "#DC143C", "intensity": 1.0 },
+      "unstable": { "core": "#FF0000", "glow": "#FF0000", "intensity": 1.5, "glitch": true }
+    },
+    "functional": {
+      "success": "#2E8B57",
+      "warning": "#FFA500",
+      "error": "#FF4500",
+      "info": "#4682B4"
+    }
+  },
+  "spacing": {
+    "xs": 4, "s": 8, "m": 16, "l": 24, "xl": 32, "xxl": 48, "xxxl": 64
+  },
+  "radii": {
+    "s": 8, "m": 16, "l": 24, "xl": 32, "full": 9999
+  },
+  "motion": {
+    "curves": {
+      "elastic": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+      "smooth": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+      "sharp": "cubic-bezier(0.0, 0.0, 0.2, 1)"
+    },
+    "durations": {
+      "fast": 200,
+      "normal": 300,
+      "slow": 500,
+      "breathing": 4000
+    }
+  },
+  "component_specs": {
+    "EmberCore": {
+      "description": "The central UI element. A glowing, pulsing circle representing the cigarette tip.",
+      "implementation": "Use Expo Linear Gradient and Animated Views. Layer multiple circles with different blur radii and opacities. Animate scale and opacity based on 'breath' cycle. Color interpolates based on cigarette count.",
+      "haptics": "Trigger 'Light' impact on pulse peak (if count > 5). Trigger 'Heavy' impact on user interaction."
+    },
+    "SmokeParticles": {
+      "description": "Ambient smoke rising from the ember.",
+      "implementation": "Use Reanimated. Create a pool of 10-20 particle Views (simple blurred circles or images). Float them upwards with random sine wave x-offsets. Fade out at top.",
+      "assets": "Use procedural blurred circles or a smoke texture image if performance lags."
+    },
+    "TactileButton": {
+      "description": "Neumorphic-lite buttons for + and -.",
+      "styles": {
+        "backgroundColor": "#1E1E1E",
+        "shadowColor": "#000",
+        "shadowOffset": { "width": 0, "height": 4 },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 4,
+        "activeScale": 0.95
+      },
+      "interaction": "Must trigger Haptics.ImpactFeedbackStyle.Medium on press."
+    },
+    "NeonChart": {
+      "description": "Analytics graphs.",
+      "implementation": "Use 'react-native-gifted-charts' or SVG. Lines should have a 'shadow' or 'glow' effect (duplicate line with thicker stroke and blur, or use specific library features). Colors match the current Ember state."
+    }
+  },
+  "image_urls": {
+    "smoke_texture": "https://images.unsplash.com/photo-11230057-pexels-photo-11230057.jpeg",
+    "ember_texture": "https://images.unsplash.com/photo-1625721335972-a966c2c0c8ae",
+    "noise_overlay": "https://grainy-gradients.vercel.app/noise.svg"
+  },
+  "libraries": {
+    "animations": "react-native-reanimated",
+    "gradients": "expo-linear-gradient",
+    "haptics": "expo-haptics",
+    "icons": "lucide-react-native",
+    "charts": "react-native-gifted-charts",
+    "navigation": "expo-router",
+    "blur": "expo-blur"
+  },
+  "instructions_to_main_agent": [
+    "CRITICAL: Do NOT use Tailwind. Use StyleSheet.create().",
+    "CRITICAL: All interactive elements must have haptic feedback.",
+    "CRITICAL: The 'Ember' color must dynamically change based on the daily count.",
+    "Ensure 60FPS. Avoid heavy bridges. Use Reanimated worklets.",
+    "Implement 'Breathing' animation on the home screen Ember (scale 1.0 -> 1.05 -> 1.0 over 4-6 seconds).",
+    "Analytics screen: Use dark backgrounds with bright, thin lines for data.",
+    "Settings: Minimalist. Switch toggles should feel heavy (haptic)."
+  ]
+}
