@@ -9,6 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
 import EmberCore from '../../src/components/EmberCore';
 import SmokeParticles from '../../src/components/SmokeParticles';
 import TactileButton from '../../src/components/TactileButton';
@@ -38,9 +39,15 @@ export default function HomeScreen() {
   const delayDuration = 300;
 
   useEffect(() => {
-    fetchData();
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, []);
+
+  // Refetch data when screen comes into focus
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
   const fetchData = async () => {
     try {
